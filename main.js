@@ -12,6 +12,17 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 // The distinction between `client: Client<boolean>` and `readyClient: Client<true>` is important for TypeScript developers.
 // It makes some properties non-nullable.
 client.once(Events.ClientReady, (readyClient) => {
+    // make sure uploads directory exists
+    const uploadsfolder = "uploads";
+    
+    try {
+        if (!fs.existsSync(uploadsfolder)) {
+            fs.mkdirSync(uploadsfolder);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
