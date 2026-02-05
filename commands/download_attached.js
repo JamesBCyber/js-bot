@@ -15,7 +15,6 @@ module.exports = {
         const destination = `${uploadsfolder}/${filename}`;
         const lastfile = `${uploadsfolder}/lastfile.txt`;
 
-        fs.writeFileSync(lastfile, filename)
 
         const filestream = fs.createWriteStream(destination);
 
@@ -39,6 +38,8 @@ module.exports = {
         } else{
             await interaction.editReply("Failed to download file");
         }
+
+        fs.writeFileSync(lastfile, filename)
     },
 };
 
